@@ -1,0 +1,577 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { fetchPageSections } from '../lib/notion.js';
+
+const s = await fetchPageSections('index');
+
+// ── Fallback content (shown until Notion sections are populated) ─────────────
+
+const p1 = s['patient-p1'] || `
+<div class="space-y-5 text-[0.92rem] text-slate-600 leading-[1.75]">
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-[0.95rem] mb-1">Understanding Your Diagnosis</h4>
+    <p>Autosomal Dominant Leukodystrophy (ADLD) is a rare, slowly progressive genetic disorder that affects the central nervous system — your brain and spinal cord.</p>
+    <p class="mt-3">Think of your nerves as electrical wires. In a healthy body, these wires are coated in protective insulation called <strong class="text-slate-800">myelin</strong> (often called "white matter"). Myelin helps electrical signals travel quickly and smoothly from your brain to the rest of your body. In people with ADLD, the body slowly loses this myelin — a process called <em>demyelination</em>. When the insulation wears away, signals slow down or stop working properly.</p>
+  </div>
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-[0.95rem] mb-1">What Causes It?</h4>
+    <p>ADLD is caused by a genetic mutation in the <em>LMNB1</em> gene. This gene instructs your body to produce a protein called Lamin B1, which forms the structural shell around the nucleus inside your cells. Most people with ADLD have an extra copy of this gene (a "duplication"), causing the body to produce a toxic, excess amount of Lamin B1. This excess protein specifically damages the brain cells responsible for creating and maintaining myelin.</p>
+  </div>
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-[0.95rem] mb-1">Is ADLD the same as Multiple Sclerosis (MS)?</h4>
+    <p>No. Because both diseases damage myelin, ADLD is sometimes misdiagnosed as MS early on. However, they are fundamentally different. MS is an autoimmune disease that typically begins in a person's 20s or 30s. ADLD is a genetic disease — symptoms generally do not appear until ages 40 to 60.</p>
+  </div>
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-[0.95rem] mb-1">How is it Inherited?</h4>
+    <p>ADLD is "autosomal dominant." If one of your parents has ADLD, there is a <strong class="text-slate-800">50% chance</strong> you inherited the mutation — and a 50% chance of passing it on to each of your children.</p>
+  </div>
+  <div class="pt-4 border-t border-slate-100">
+    <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">References</p>
+    <ul class="space-y-1">
+      <li class="text-xs text-slate-400">Padiath, Q.S. (2019). Autosomal Dominant Leukodystrophy: A Disease of the Nuclear Lamina. <em>Frontiers in Cell and Developmental Biology.</em> <a href="https://scholar.google.com/scholar?q=Autosomal+Dominant+Leukodystrophy%3A+A+Disease+of+the+Nuclear+Lamina+Padiath" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">Google Scholar ↗</a></li>
+      <li class="text-xs text-slate-400 mt-1">Dhamija, R., et al. (2025). Clinical Practice Guidelines for LMNB1-Related ADLD. <em>Neurology Genetics.</em> <a href="https://pubmed.ncbi.nlm.nih.gov/40933505/" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">PubMed ↗</a></li>
+    </ul>
+  </div>
+</div>`;
+
+const p2 = s['patient-p2'] || `
+<div class="space-y-5 text-[0.92rem] text-slate-600 leading-[1.75]">
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-[0.95rem] mb-2">The Progression of Symptoms</h4>
+    <p>Unlike many genetic conditions, ADLD does not show up in childhood. Symptoms usually begin between ages 40 and 60 and are slowly progressive — worsening gradually over 10 to 20 years. The disease typically moves through three stages:</p>
+    <div class="space-y-4 mt-4">
+      <div class="flex items-start gap-4">
+        <div class="w-7 h-7 rounded-full bg-[#0a2342] text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</div>
+        <div>
+          <p class="font-semibold text-[#0a2342] text-[0.9rem]">The Autonomic Phase <span class="font-normal text-slate-500">(Early Signs)</span></p>
+          <p class="text-slate-500 text-[0.88rem] mt-1 leading-relaxed">The very first signs usually involve the autonomic nervous system — the part of your body that controls unconscious functions. This may include sudden drops in blood pressure when standing (dizziness), bladder control issues, constipation, erectile dysfunction, or a loss of sweating.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4">
+        <div class="w-7 h-7 rounded-full bg-[#0a2342] text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</div>
+        <div>
+          <p class="font-semibold text-[#0a2342] text-[0.9rem]">The Motor Phase</p>
+          <p class="text-slate-500 text-[0.88rem] mt-1 leading-relaxed">Months or years later, patients begin experiencing movement issues. This often starts in the legs, causing muscle stiffness (spasticity), weakness, intention tremors (shaking when trying to move), and difficulty with coordination and walking.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4">
+        <div class="w-7 h-7 rounded-full bg-[#0a2342] text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</div>
+        <div>
+          <p class="font-semibold text-[#0a2342] text-[0.9rem]">The Cognitive Phase</p>
+          <p class="text-slate-500 text-[0.88rem] mt-1 leading-relaxed">Mild cognitive impairment or personality changes may occur, but usually only in the later stages of the disease.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-[0.95rem] mb-2">How is ADLD Diagnosed?</h4>
+    <div class="space-y-3">
+      <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+        <span class="text-lg flex-shrink-0">🧲</span>
+        <div>
+          <p class="font-semibold text-[#0a2342] text-[0.88rem]">MRI Scans</p>
+          <p class="text-slate-500 text-[0.85rem] mt-0.5 leading-relaxed">An MRI of the brain and spine is the most sensitive tool for spotting ADLD. It shows a highly specific pattern of myelin loss, often including a "dark rim" sign around the brain's ventricles and early atrophy of the spinal cord.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+        <span class="text-lg flex-shrink-0">🧬</span>
+        <div>
+          <p class="font-semibold text-[#0a2342] text-[0.88rem]">Genetic Testing</p>
+          <p class="text-slate-500 text-[0.85rem] mt-0.5 leading-relaxed">To confirm ADLD, a specialized genetic test is required. Standard DNA tests (like whole-exome sequencing) are <strong>not</strong> recommended — they often miss the large structural duplications that cause ADLD. You need a single-gene test capable of high-resolution structural variant detection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-sky-50 border border-sky-100 rounded-xl p-4 text-[0.88rem] text-sky-900 leading-relaxed">
+    <strong>Note for your medical records:</strong> ADLD now has its own official ICD-10 billing code: <strong>G90.B</strong>. Make sure your doctor applies this to your chart — it streamlines your insurance and care.
+  </div>
+  <div class="pt-4 border-t border-slate-100">
+    <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">References</p>
+    <ul class="space-y-1">
+      <li class="text-xs text-slate-400">Dhamija, R., et al. (2025). Clinical Practice Guidelines for LMNB1-Related ADLD. <em>Neurology Genetics.</em> <a href="https://pubmed.ncbi.nlm.nih.gov/40933505/" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">PubMed ↗</a></li>
+      <li class="text-xs text-slate-400 mt-1">Finnsson, J., et al. (2015). Natural course of LMNB1-related autosomal dominant leukodystrophy. <em>Neurology.</em> <a href="https://scholar.google.com/scholar?q=Natural+course+of+LMNB1-related+autosomal+dominant+leukodystrophy" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">Google Scholar ↗</a></li>
+    </ul>
+  </div>
+</div>`;
+
+const p3 = s['patient-p3'] || `
+<div class="space-y-5 text-[0.92rem] text-slate-600 leading-[1.75]">
+  <p>While there is currently no cure for ADLD, assembling the right medical team can drastically improve your comfort, mobility, and quality of life. ADLD requires a team-based approach to care.</p>
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-[0.95rem] mb-2">Who Should Be on Your Team?</h4>
+    <p>Your core team should include a <strong class="text-slate-800">neurologist</strong> to oversee care, a <strong class="text-slate-800">physical therapist</strong>, and a <strong class="text-slate-800">genetic counselor</strong>. As symptoms develop, ask for referrals to:</p>
+    <ul class="space-y-2 mt-3">
+      <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 rounded-full bg-sky-500 mt-2 flex-shrink-0"></span><span><strong class="text-slate-700">Urologist</strong> — to help manage bladder and bowel dysfunction.</span></li>
+      <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 rounded-full bg-sky-500 mt-2 flex-shrink-0"></span><span><strong class="text-slate-700">Occupational Therapist</strong> — to help you maintain independence in daily life.</span></li>
+      <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 rounded-full bg-sky-500 mt-2 flex-shrink-0"></span><span><strong class="text-slate-700">Physical Medicine &amp; Rehabilitation (PM&amp;R)</strong> specialist — to assist with mobility equipment and spasticity.</span></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-[0.95rem] mb-2">Medical Treatments</h4>
+    <p>Your team can prescribe medications to manage specific symptoms. Muscle relaxants (like baclofen or tizanidine) or botulinum toxin injections can relieve muscle stiffness and spasticity. There are also excellent medications available to help treat overactive bladder, manage blood pressure drops, and relieve constipation.</p>
+  </div>
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-[0.95rem] mb-3">Everyday Tips for the Home</h4>
+    <div class="grid sm:grid-cols-2 gap-3">
+      <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+        <span class="text-xl flex-shrink-0">🚿</span>
+        <div>
+          <p class="font-semibold text-[#0a2342] text-[0.88rem]">Use a Shower Chair</p>
+          <p class="text-slate-500 text-[0.82rem] mt-0.5 leading-relaxed">Prevent falls in the bathroom. Head trauma can worsen your condition — don't risk it.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+        <span class="text-xl flex-shrink-0">🧍</span>
+        <div>
+          <p class="font-semibold text-[#0a2342] text-[0.88rem]">Stand Up Slowly</p>
+          <p class="text-slate-500 text-[0.82rem] mt-0.5 leading-relaxed">To manage blood pressure drops, always transition slowly from lying to sitting, then sitting to standing.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+        <span class="text-xl flex-shrink-0">🛏️</span>
+        <div>
+          <p class="font-semibold text-[#0a2342] text-[0.88rem]">Invest in Cushioning</p>
+          <p class="text-slate-500 text-[0.82rem] mt-0.5 leading-relaxed">A waffle-cushion or alternating air pressure mattress pad prevents painful pressure sores for patients seated or in bed for long periods.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+        <span class="text-xl flex-shrink-0">❄️</span>
+        <div>
+          <p class="font-semibold text-[#0a2342] text-[0.88rem]">Stay Cool</p>
+          <p class="text-slate-500 text-[0.82rem] mt-0.5 leading-relaxed">ADLD can impair sweating. Keep PVA cooling towels in the fridge or use cooling vests to avoid overheating.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-4 border-t border-slate-100">
+    <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">References</p>
+    <ul class="space-y-1">
+      <li class="text-xs text-slate-400">ADLD Center Handbook (2024). Practical Recommendations for ADLD Symptom Management. <a href="https://adld.center" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">adld.center ↗</a></li>
+      <li class="text-xs text-slate-400 mt-1">Van Haren, K., et al. (2015). Consensus statement on preventive and symptomatic care of leukodystrophy patients. <em>Molecular Genetics and Metabolism.</em> <a href="https://pubmed.ncbi.nlm.nih.gov/25577286/" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">PubMed ↗</a></li>
+    </ul>
+  </div>
+</div>`;
+
+const p4 = s['patient-p4'] || `
+<div class="space-y-5 text-[0.92rem] text-slate-600 leading-[1.75]">
+  <p>A diagnosis of ADLD can feel overwhelming — not just physically, but emotionally. Protecting your mental health and communicating with your family are critical parts of your care plan.</p>
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-[0.95rem] mb-2">Managing Your Mental Health</h4>
+    <p class="mb-3">Do not hesitate to ask for help. It is incredibly common to experience grief, anxiety, or depression when navigating a rare disease.</p>
+    <div class="space-y-3">
+      <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+        <span class="text-lg flex-shrink-0">💬</span>
+        <div>
+          <p class="font-semibold text-[#0a2342] text-[0.88rem]">Talk to a Professional</p>
+          <p class="text-slate-500 text-[0.85rem] mt-0.5 leading-relaxed">Ask your neurologist for a referral to a counselor or neuro-psychiatrist. Medications like SSRIs are highly effective and commonly used to treat depression in ADLD patients.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+        <span class="text-lg flex-shrink-0">🤝</span>
+        <div>
+          <p class="font-semibold text-[#0a2342] text-[0.88rem]">Join a Support Group</p>
+          <p class="text-slate-500 text-[0.85rem] mt-0.5 leading-relaxed">You are not alone. Organizations like the <a href="https://ulf.org/" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">United Leukodystrophy Foundation (ULF)</a> and Global Genes offer virtual support groups and incredible community resources.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-[0.95rem] mb-2">Family Planning</h4>
+    <p>Because ADLD is autosomal dominant, patients have a 50% chance of passing the mutation to their children. If you or an at-risk family member wish to conceive, prenatal genetic counseling should be offered.</p>
+    <p class="mt-3">You have options. Many patients explore <strong class="text-slate-800">In Vitro Fertilization (IVF)</strong> combined with <strong class="text-slate-800">Pre-implantation Genetic Testing (PGT)</strong>. Embryos are created in a lab, tested for the ADLD mutation, and only embryos without the mutation are transferred — ensuring the disease is not passed on. The use of donor eggs or sperm can also be explored.</p>
+  </div>
+  <div class="pt-4 border-t border-slate-100">
+    <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">References</p>
+    <ul class="space-y-1">
+      <li class="text-xs text-slate-400">United Leukodystrophy Foundation (ULF) Support Resources. <a href="https://ulf.org/" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">ulf.org ↗</a></li>
+      <li class="text-xs text-slate-400 mt-1">National Society of Genetic Counselors: Find a Genetic Counselor. <a href="https://findageneticcounselor.nsgc.org/" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">nsgc.org ↗</a></li>
+    </ul>
+  </div>
+</div>`;
+
+const p5 = s['patient-p5'] || `
+<div class="space-y-5 text-[0.92rem] text-slate-600 leading-[1.75]">
+  <p>For the first time in history, we are moving from simply understanding ADLD to actively treating it. The ADLD Center is driving several groundbreaking initiatives to find a cure.</p>
+  <div class="flex items-start gap-4 p-5 bg-slate-50 rounded-xl border border-slate-100">
+    <span class="text-2xl flex-shrink-0">🧬</span>
+    <div>
+      <h4 class="font-bold text-[#0a2342] text-[0.95rem] mb-1">The First Clinical Trial is Underway</h4>
+      <p class="text-slate-500 text-[0.88rem] leading-relaxed">In a monumental milestone, the first ADLD patient recently began receiving an experimental genetic therapy — an antisense oligonucleotide (ASO) — as part of an <em>n=1</em> (single-patient) clinical trial. Delivered via spinal injection to directly target the brain, this drug aims to silence the overactive <em>LMNB1</em> gene. This foundational trial will prove the drug is safe and effective, paving the way for expanded trials.</p>
+    </div>
+  </div>
+  <div class="flex items-start gap-4 p-5 bg-slate-50 rounded-xl border border-slate-100">
+    <span class="text-2xl flex-shrink-0">🌍</span>
+    <div>
+      <h4 class="font-bold text-[#0a2342] text-[0.95rem] mb-1">The Natural History Study</h4>
+      <p class="text-slate-500 text-[0.88rem] leading-relaxed">We are running a global, remote Natural History Study to track how ADLD progresses over time. Because ADLD is so rare, it is unethical to give patients a placebo in future trials. By mapping the natural progression now, we can use this data as a "synthetic control arm" to prove to the FDA when a new drug is working — ensuring every future trial participant receives the actual medicine.</p>
+      <a href="natural-history-study.html" class="inline-flex items-center gap-1.5 mt-2 text-sky-600 font-semibold text-xs hover:underline">Learn about enrolling — participation is remote and free ↗</a>
+    </div>
+  </div>
+  <div class="flex items-start gap-4 p-5 bg-slate-50 rounded-xl border border-slate-100">
+    <span class="text-2xl flex-shrink-0">💊</span>
+    <div>
+      <h4 class="font-bold text-[#0a2342] text-[0.95rem] mb-1">Drug Repurposing</h4>
+      <p class="text-slate-500 text-[0.88rem] leading-relaxed">Creating a brand new drug takes years. To speed things up, we have partnered with cutting-edge biotech platforms to screen thousands of already FDA-approved drugs on ADLD cells — looking for an existing medicine that can be quickly repurposed for off-label use in ADLD patients.</p>
+    </div>
+  </div>
+  <div class="flex items-start gap-4 p-5 bg-slate-50 rounded-xl border border-slate-100">
+    <span class="text-2xl flex-shrink-0">🧠</span>
+    <div>
+      <h4 class="font-bold text-[#0a2342] text-[0.95rem] mb-1">How You Can Help: Brain Donation</h4>
+      <p class="text-slate-500 text-[0.88rem] leading-relaxed">Post-mortem brain donation is one of the most profound gifts a family can give to science. Brain tissue allows researchers to uncover exactly how ADLD destroys myelin and test new therapies on human tissue. If you are interested in registering as a donor, please contact the ADLD Center to coordinate with our tissue bank partners.</p>
+    </div>
+  </div>
+  <div class="pt-4 border-t border-slate-100">
+    <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">References</p>
+    <ul class="space-y-1">
+      <li class="text-xs text-slate-400">ADLD Center Research Roadmap. <a href="https://adld.center/research-roadmap/" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">adld.center ↗</a></li>
+      <li class="text-xs text-slate-400 mt-1">FDA Guidance: Rare Diseases — Natural History Studies for Drug Development. <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/rare-diseases-natural-history-studies-drug-development" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">FDA ↗</a></li>
+    </ul>
+  </div>
+</div>`;
+
+const researchers = s['researchers-body'] || `
+<div class="space-y-7 text-[0.92rem] text-slate-600 leading-[1.75]">
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-base mb-2">Molecular Pathogenesis of ADLD</h4>
+    <p>Autosomal Dominant Leukodystrophy (ADLD) is a progressive neurodegenerative disorder uniquely driven by a toxic gain-of-function from overexpression of the <em>LMNB1</em> gene — caused either by a tandem genomic duplication of <em>LMNB1</em> or by large upstream deletions. Recent 3D genomic architecture studies indicate that pathogenesis relies heavily on disruption of Topologically Associating Domains (TADs). In upstream deletions, TAD boundaries are destroyed, allowing "enhancer adoption" where foreign forebrain/midbrain enhancers hijack the <em>LMNB1</em> promoter. In duplication cases, the loss of an oligodendrocyte-specific silencer element allows <em>LMNB1</em> to escape normal repression.</p>
+    <p class="mt-3">At the cellular level, Lamin B1 accumulation impacts both oligodendrocytes and astrocytes:</p>
+    <ul class="space-y-3 mt-3">
+      <li class="flex items-start gap-3">
+        <span class="w-1.5 h-1.5 rounded-full bg-sky-500 mt-2 flex-shrink-0"></span>
+        <span><strong class="text-slate-700">Oligodendrocyte Dysfunction:</strong> Lamin B1 accumulation thickens the nuclear lamina, increasing nuclear rigidity. It acts as an epigenetic modulator, increasing repressive chromatin marks that downregulate lipid synthesis genes (like <em>Scd1</em> and <em>Elovl7</em>), starving cells of the lipids required to maintain myelin. ADLD also acts as a spliceopathy — increased Lamin B1 upregulates RAVER2, leading to aberrant alternative splicing of the <em>PLP1</em> transcript.</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="w-1.5 h-1.5 rounded-full bg-sky-500 mt-2 flex-shrink-0"></span>
+        <span><strong class="text-slate-700">Astrocyte Reactivity:</strong> Astrocytes are a primary pathological driver. Lamin B1 overexpression triggers astrocytic reactivity and drastically reduces secretion of leukemia inhibitory factor (LIF), dampening Jak/Stat3 and PI3K/Akt survival signaling in neighboring cells and depriving myelinating oligodendrocytes of essential functional support.</span>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-base mb-2">Preclinical Models and Biomarker Discovery</h4>
+    <p>Therapeutic development utilizes the PLP-LMNB1Tg mouse model, which targets Lamin B1 overexpression specifically to oligodendrocytes and successfully recapitulates the late-onset, age-dependent demyelination, ataxia, and severe motor dysfunction seen in human patients. On the <em>in vitro</em> front, researchers utilize patient-derived iPSC neurons and high-content drug screening platforms to map disease networks and evaluate transcriptomic readouts.</p>
+    <p class="mt-3">A critical bottleneck remains the lack of validated, quantitative biomarkers. Efforts are underway to identify reliable fluid biomarkers (plasma miRNAs, CSF lactate) and develop computational MRI grading systems to reliably track disease progression during clinical trials.</p>
+  </div>
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-base mb-2">Clinical Practice Guidelines (2025)</h4>
+    <p>The first consensus clinical practice guidelines for ADLD were published in 2025. Key conclusions: whole-exome sequencing (WES) is <strong>not</strong> recommended as a first-tier diagnostic tool because it often misses structural variants. Diagnosis requires single-gene testing capable of high-resolution structural variant detection. The guidelines also established standardized baseline and longitudinal surveillance protocols utilizing brain and cervical spine MRIs, tilt table testing, and neuropsychometric assessments.</p>
+  </div>
+  <div class="pt-4 border-t border-slate-100">
+    <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">References</p>
+    <ul class="space-y-1">
+      <li class="text-xs text-slate-400">1. Padiath, Q.S. (2019). Autosomal Dominant Leukodystrophy: A Disease of the Nuclear Lamina. <em>Frontiers in Cell and Developmental Biology.</em> <a href="https://scholar.google.com/scholar?q=Autosomal+Dominant+Leukodystrophy%3A+A+Disease+of+the+Nuclear+Lamina" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">Google Scholar ↗</a></li>
+      <li class="text-xs text-slate-400 mt-1">2. Bartoletti-Stella et al. (2015). Messenger RNA processing is altered in autosomal dominant leukodystrophy. <em>Human Molecular Genetics.</em> <a href="https://scholar.google.com/scholar?q=Messenger+RNA+processing+is+altered+in+autosomal+dominant+leukodystrophy" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">Google Scholar ↗</a></li>
+      <li class="text-xs text-slate-400 mt-1">3. Ratti et al. (2023). Understanding the Ultra-Rare Disease ADLD: an Updated Review. <em>Molecular Neurobiology.</em> <a href="https://scholar.google.com/scholar?q=Understanding+the+Ultra-Rare+Disease+Autosomal+Dominant+Leukodystrophy" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">Google Scholar ↗</a></li>
+    </ul>
+  </div>
+</div>`;
+
+const pharma = s['pharma-body'] || `
+<div class="space-y-7 text-[0.92rem] text-slate-600 leading-[1.75]">
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-base mb-2">A De-Risked Pathway in an Ultra-Rare Indication</h4>
+    <p>While ADLD is ultra-rare, the underlying pathogenic mechanism — <em>LMNB1</em> overexpression — presents a highly scalable therapeutic target. <em>LMNB1</em> overexpression is a well-documented driver in much larger oncological indications including lung adenocarcinoma and hepatocellular carcinoma, as well as DNA repair syndromes like Ataxia Telangiectasia. Developing RNAi, ASO, or shRNA therapies that successfully downregulate <em>LMNB1</em> for ADLD not only qualifies for Orphan Drug incentives but provides direct proof-of-concept for broader pipeline expansion into massive oncology markets.</p>
+  </div>
+  <div>
+    <h4 class="font-bold text-[#0a2342] text-base mb-3">Clinical Trial Readiness</h4>
+    <p class="mb-4">The ADLD Center has proactively dismantled traditional rare-disease development bottlenecks:</p>
+    <div class="space-y-3">
+      <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+        <div class="w-8 h-8 rounded-lg bg-[#0a2342] text-white flex items-center justify-center flex-shrink-0 mt-0.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div>
+          <p class="font-semibold text-[#0a2342] text-[0.9rem]">Synthetic Control Arms</p>
+          <p class="text-slate-500 text-[0.85rem] mt-0.5 leading-relaxed">We are actively enrolling a globally coordinated, remote Natural History Study explicitly designed to serve as an external/synthetic control for future trials, aligning with FDA guidance to eliminate the ethical and logistical barriers of placebo arms in fatal progressive rare diseases.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+        <div class="w-8 h-8 rounded-lg bg-[#0a2342] text-white flex items-center justify-center flex-shrink-0 mt-0.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div>
+          <p class="font-semibold text-[#0a2342] text-[0.9rem]">Patient Identification</p>
+          <p class="text-slate-500 text-[0.85rem] mt-0.5 leading-relaxed">The recent approval of a dedicated ICD-10 code (<strong>G90.B</strong>) for ADLD streamlines patient recruitment and Electronic Health Record (EHR) data mining for clinical trial enrollment.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+        <div class="w-8 h-8 rounded-lg bg-[#0a2342] text-white flex items-center justify-center flex-shrink-0 mt-0.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <p class="font-semibold text-[#0a2342] text-[0.9rem]">Active Proof of Concept</p>
+          <p class="text-slate-500 text-[0.85rem] mt-0.5 leading-relaxed">We have successfully initiated a first-in-human <em>n=1</em> clinical trial utilizing an intrathecal antisense oligonucleotide (ASO), generating critical preliminary safety and tolerability data to pave the way for expanded multi-patient trials by 2026.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-4 border-t border-slate-100">
+    <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">References</p>
+    <ul class="space-y-1">
+      <li class="text-xs text-slate-400">1. LMNB1 Disease Analysis and Therapeutic Expansion. <a href="https://scholar.google.com/scholar?q=LMNB1+overexpression+cancer+therapeutics" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">Google Scholar ↗</a></li>
+      <li class="text-xs text-slate-400 mt-1">2. ADLD Center Operational and Strategic Framework. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=autosomal+dominant+leukodystrophy" class="text-sky-600 hover:underline" target="_blank" rel="noreferrer">PubMed ↗</a></li>
+    </ul>
+  </div>
+</div>`;
+---
+<Layout title="ADLD Center — Autosomal Dominant Leukodystrophy">
+
+  <!-- ── Hero ── -->
+  <section class="relative min-h-[70vh] flex items-end overflow-hidden bg-[#060f1e]">
+    <img
+      src="/homepage-hero.png"
+      alt="ADLD Research — hope for patients and families"
+      class="absolute inset-0 w-full h-full object-cover object-top opacity-45"
+    >
+    <div class="absolute inset-0 bg-gradient-to-t from-[#060f1e] via-[#060f1e]/55 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#060f1e]/85 via-[#060f1e]/30 to-transparent"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-8 md:px-14 pb-16 pt-20 w-full">
+      <div class="inline-flex items-center gap-2.5 bg-sky-500/15 border border-sky-400/25 text-sky-300 text-[0.68rem] font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full mb-7 backdrop-blur-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse flex-shrink-0"></span>
+        First clinical trial now underway
+      </div>
+      <h1 class="text-5xl md:text-6xl lg:text-[4.5rem] font-extrabold text-white leading-[1.06] tracking-tight mb-6 max-w-2xl">
+        This disease has had<br>
+        decades of silence.<br>
+        <span class="text-sky-300">We're ending that.</span>
+      </h1>
+      <p class="text-slate-300 text-base md:text-lg leading-relaxed max-w-lg mb-10">
+        Autosomal Dominant Leukodystrophy destroys the brain's myelin and leaves families with no treatment options and no answers. The ADLD Center is funding the science, running the trials, and building the global community this disease has never had.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="natural-history-study.html" class="bg-white text-[#0a2342] px-7 py-3.5 rounded-xl font-bold text-sm hover:bg-sky-50 transition-colors shadow-lg">
+          Join the Natural History Study
+        </a>
+        <a href="donate.html" class="bg-red-600 text-white px-7 py-3.5 rounded-xl font-bold text-sm hover:bg-red-700 transition-colors shadow-lg flex items-center gap-2">
+          <svg class="w-4 h-4 fill-current flex-shrink-0" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+          Donate to ADLD Research
+        </a>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/30 animate-bounce">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- ── Audience Tabs ── -->
+  <div class="bg-[#0a2342] px-5 pt-6 pb-0 shadow-lg">
+    <div class="max-w-5xl mx-auto flex gap-1.5 overflow-x-auto">
+      <button onclick="showSection('patients')"    id="tab-patients"    class="sec-tab active flex-shrink-0 px-5 py-2.5 rounded-t-xl text-[0.83rem] font-semibold flex items-center gap-2">
+        <svg class="w-3.5 h-3.5 fill-current opacity-80" viewBox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg>
+        Patients &amp; Caregivers
+      </button>
+      <button onclick="showSection('researchers')" id="tab-researchers" class="sec-tab flex-shrink-0 px-5 py-2.5 rounded-t-xl text-[0.83rem] font-semibold flex items-center gap-2">
+        <svg class="w-3.5 h-3.5 fill-current opacity-80" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7 2a1 1 0 00-.707 1.707L7 4.414v3.758a1 1 0 01-.293.707l-4 4C.817 14.769 2.156 18 4.828 18h10.343c2.673 0 4.012-3.231 2.122-5.121l-4-4A1 1 0 0113 8.172V4.414l.707-.707A1 1 0 0013 2H7zm2 6.172V4h2v4.172a3 3 0 00.879 2.12l1.027 1.028a4 4 0 00-2.171.102l-.47.156a4 4 0 01-2.53 0l-.563-.187a1.993 1.993 0 00-.114-.035l1.063-1.063A3 3 0 009 8.172z" clip-rule="evenodd"/></svg>
+        Scientists &amp; Researchers
+      </button>
+      <button onclick="showSection('pharma')"      id="tab-pharma"      class="sec-tab flex-shrink-0 px-5 py-2.5 rounded-t-xl text-[0.83rem] font-semibold flex items-center gap-2">
+        <svg class="w-3.5 h-3.5 fill-current opacity-80" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+        Pharma &amp; Biotech
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Tab Content ── -->
+  <div class="bg-gradient-to-b from-slate-100 to-white pb-16 pt-8 px-6">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- PATIENTS -->
+      <div id="section-patients" class="tab-content active">
+        <div class="mb-6">
+          <h2 class="text-2xl font-extrabold text-[#0a2342] tracking-tight">Patients &amp; Caregivers</h2>
+          <p class="text-slate-500 text-sm mt-2 leading-relaxed max-w-2xl">Living with ADLD — or caring for someone who does — can feel overwhelming. These five guides give you clear, plain-language answers.</p>
+          <!-- Segmented sub-page control -->
+          <div class="mt-4 overflow-x-auto">
+            <div class="flex gap-1.5 min-w-max p-1 bg-slate-200/60 rounded-xl w-fit">
+              <button onclick="showPage('p1')" id="ptab-p1" class="pg-pill active flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[0.78rem] whitespace-nowrap">
+                <span id="pnum-p1" class="w-4 h-4 rounded-full bg-[#0a2342] text-white text-[0.55rem] font-bold flex items-center justify-center flex-shrink-0">1</span>What is ADLD?
+              </button>
+              <button onclick="showPage('p2')" id="ptab-p2" class="pg-pill flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[0.78rem] whitespace-nowrap">
+                <span id="pnum-p2" class="w-4 h-4 rounded-full bg-slate-300 text-slate-500 text-[0.55rem] font-bold flex items-center justify-center flex-shrink-0">2</span>Symptoms &amp; Diagnosis
+              </button>
+              <button onclick="showPage('p3')" id="ptab-p3" class="pg-pill flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[0.78rem] whitespace-nowrap">
+                <span id="pnum-p3" class="w-4 h-4 rounded-full bg-slate-300 text-slate-500 text-[0.55rem] font-bold flex items-center justify-center flex-shrink-0">3</span>Care Team
+              </button>
+              <button onclick="showPage('p4')" id="ptab-p4" class="pg-pill flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[0.78rem] whitespace-nowrap">
+                <span id="pnum-p4" class="w-4 h-4 rounded-full bg-slate-300 text-slate-500 text-[0.55rem] font-bold flex items-center justify-center flex-shrink-0">4</span>Mental Health
+              </button>
+              <button onclick="showPage('p5')" id="ptab-p5" class="pg-pill flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[0.78rem] whitespace-nowrap">
+                <span id="pnum-p5" class="w-4 h-4 rounded-full bg-slate-300 text-slate-500 text-[0.55rem] font-bold flex items-center justify-center flex-shrink-0">5</span>Hope in Action
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="page-p1" class="subpage active bg-white rounded-2xl border border-slate-200 shadow-sm px-7 py-8">
+          <h3 class="text-lg font-bold text-[#0a2342] mb-5 pb-4 border-b border-slate-100">What is ADLD? The Basics</h3>
+          <Fragment set:html={p1} />
+          <div class="flex justify-end mt-6"><button onclick="showPage('p2')" class="flex items-center gap-1.5 text-sm text-[#0a2342] font-semibold hover:underline">Symptoms &amp; Diagnosis <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button></div>
+        </div>
+
+        <div id="page-p2" class="subpage bg-white rounded-2xl border border-slate-200 shadow-sm px-7 py-8">
+          <h3 class="text-lg font-bold text-[#0a2342] mb-5 pb-4 border-b border-slate-100">Symptoms &amp; Getting an Accurate Diagnosis</h3>
+          <Fragment set:html={p2} />
+          <div class="flex justify-between mt-6">
+            <button onclick="showPage('p1')" class="flex items-center gap-1.5 text-sm text-[#0a2342] font-semibold hover:underline"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg> What is ADLD?</button>
+            <button onclick="showPage('p3')" class="flex items-center gap-1.5 text-sm text-[#0a2342] font-semibold hover:underline">Building Your Care Team <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+
+        <div id="page-p3" class="subpage bg-white rounded-2xl border border-slate-200 shadow-sm px-7 py-8">
+          <h3 class="text-lg font-bold text-[#0a2342] mb-5 pb-4 border-b border-slate-100">Building Your Care Team &amp; Managing Symptoms</h3>
+          <Fragment set:html={p3} />
+          <div class="flex justify-between mt-6">
+            <button onclick="showPage('p2')" class="flex items-center gap-1.5 text-sm text-[#0a2342] font-semibold hover:underline"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg> Symptoms &amp; Diagnosis</button>
+            <button onclick="showPage('p4')" class="flex items-center gap-1.5 text-sm text-[#0a2342] font-semibold hover:underline">Mental Health &amp; Family <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+
+        <div id="page-p4" class="subpage bg-white rounded-2xl border border-slate-200 shadow-sm px-7 py-8">
+          <h3 class="text-lg font-bold text-[#0a2342] mb-5 pb-4 border-b border-slate-100">Mental Health &amp; Family Planning</h3>
+          <Fragment set:html={p4} />
+          <div class="flex justify-between mt-6">
+            <button onclick="showPage('p3')" class="flex items-center gap-1.5 text-sm text-[#0a2342] font-semibold hover:underline"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg> Building Your Care Team</button>
+            <button onclick="showPage('p5')" class="flex items-center gap-1.5 text-sm text-[#0a2342] font-semibold hover:underline">Hope in Action <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+
+        <div id="page-p5" class="subpage bg-white rounded-2xl border border-slate-200 shadow-sm px-7 py-8">
+          <h3 class="text-lg font-bold text-[#0a2342] mb-5 pb-4 border-b border-slate-100">Hope in Action: The Latest ADLD Research</h3>
+          <Fragment set:html={p5} />
+          <div class="bg-[#0a2342] text-white rounded-2xl p-6 mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <p class="text-sky-400 text-[0.68rem] font-bold uppercase tracking-widest mb-1">Get Involved</p>
+              <p class="font-bold text-base">Enroll in the Natural History Study</p>
+              <p class="text-blue-200 text-sm mt-1">Participation is remote and completely free.</p>
+            </div>
+            <a href="natural-history-study.html" class="flex-shrink-0 bg-white text-[#0a2342] px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-sky-50 transition-colors">Learn More</a>
+          </div>
+          <div class="flex justify-start mt-6">
+            <button onclick="showPage('p4')" class="flex items-center gap-1.5 text-sm text-[#0a2342] font-semibold hover:underline"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg> Mental Health &amp; Family</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESEARCHERS -->
+      <div id="section-researchers" class="tab-content">
+        <div class="mb-6">
+          <h2 class="text-2xl font-extrabold text-[#0a2342] tracking-tight">Scientists &amp; Researchers</h2>
+          <p class="text-slate-500 text-sm mt-2 leading-relaxed max-w-2xl">ADLD is driven by a toxic gain-of-function from <em>LMNB1</em> overexpression. Below you will find the latest on molecular pathogenesis, preclinical models, and the 2025 clinical practice guidelines.</p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            <a href="research-roadmap.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-600 hover:text-[#0a2342] text-[0.77rem] font-medium rounded-lg transition-colors shadow-sm">Research Roadmap →</a>
+            <a href="resources.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-600 hover:text-[#0a2342] text-[0.77rem] font-medium rounded-lg transition-colors shadow-sm">Publications &amp; Resources →</a>
+            <a href="natural-history-study.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-600 hover:text-[#0a2342] text-[0.77rem] font-medium rounded-lg transition-colors shadow-sm">Natural History Study →</a>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm px-7 py-8">
+          <Fragment set:html={researchers} />
+          <div class="bg-[#0a2342] text-white rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-6">
+            <p class="font-semibold text-sm">Access full publications, grant opportunities, and institutional partnership details.</p>
+            <a href="resources.html" class="flex-shrink-0 bg-white text-[#0a2342] px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-sky-50 transition-colors">View Resources</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHARMA -->
+      <div id="section-pharma" class="tab-content">
+        <div class="mb-6">
+          <h2 class="text-2xl font-extrabold text-[#0a2342] tracking-tight">Pharma &amp; Biotech Partners</h2>
+          <p class="text-slate-500 text-sm mt-2 leading-relaxed max-w-2xl">ADLD presents a de-risked pathway in an ultra-rare indication — a well-defined mechanism, Orphan Drug incentives, an active <em>n=1</em> trial, and a Natural History Study designed as a synthetic control arm.</p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-[0.77rem] font-medium rounded-lg shadow-sm"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></span>Orphan Drug designations available</span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-[0.77rem] font-medium rounded-lg shadow-sm"><span class="w-1.5 h-1.5 rounded-full bg-sky-500 flex-shrink-0"></span>Synthetic control arm ready</span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-[0.77rem] font-medium rounded-lg shadow-sm"><span class="w-1.5 h-1.5 rounded-full bg-sky-500 flex-shrink-0"></span>First-in-human <em>n=1</em> trial active</span>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm px-7 py-8">
+          <Fragment set:html={pharma} />
+          <div class="bg-[#0a2342] text-white rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-6">
+            <p class="font-semibold text-sm">Explore partnership opportunities — clinical collaboration, data access, and licensing.</p>
+            <a href="contact.html" class="flex-shrink-0 bg-white text-[#0a2342] px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-sky-50 transition-colors">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Handbook Promo ── -->
+  <section class="bg-white py-14 px-6 border-t border-slate-100">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
+      <div class="flex-shrink-0 w-56 md:w-64">
+        <img src="/handbook-cover.png" alt="ADLD Handbook" class="w-full drop-shadow-xl rounded-lg">
+      </div>
+      <div class="flex-1 text-center md:text-left">
+        <p class="text-sky-600 text-[0.72rem] font-bold uppercase tracking-widest mb-3">Free Download</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-[#0a2342] tracking-tight leading-tight mb-4">Download the<br>ADLD Handbook</h2>
+        <p class="text-slate-500 leading-relaxed mb-7 max-w-lg">Your complete guide to understanding, managing, and finding support for Autosomal Dominant Leukodystrophy — written for patients, caregivers, and families navigating a new diagnosis.</p>
+        <a
+          href="/ADLD-Handbook-v1.pdf"
+          target="_blank"
+          class="inline-flex items-center gap-2.5 bg-[#0a2342] text-white px-7 py-3.5 rounded-xl font-bold text-sm hover:bg-[#0d2a55] transition-colors shadow-md"
+        >
+          <svg class="w-4 h-4 fill-current flex-shrink-0" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          Download ADLD Handbook
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Stats Bar ── -->
+  <section class="bg-gradient-to-br from-[#060f1e] to-[#0d2a55] py-16 px-6">
+    <div class="max-w-4xl mx-auto grid grid-cols-3 gap-5">
+      <div class="text-center px-4 py-8 rounded-2xl bg-white/5 border border-white/10">
+        <div class="text-3xl md:text-4xl font-black text-white mb-2">~1 in 50k</div>
+        <div class="text-sky-400 text-[0.65rem] uppercase tracking-widest font-semibold">Estimated Prevalence</div>
+      </div>
+      <div class="text-center px-4 py-8 rounded-2xl bg-white/5 border border-white/10">
+        <div class="text-3xl md:text-4xl font-black text-white mb-2">40–60</div>
+        <div class="text-sky-400 text-[0.65rem] uppercase tracking-widest font-semibold">Typical Age of Onset</div>
+      </div>
+      <div class="text-center px-4 py-8 rounded-2xl bg-white/5 border border-white/10">
+        <div class="text-3xl md:text-4xl font-black text-white mb-2">0</div>
+        <div class="text-sky-400 text-[0.65rem] uppercase tracking-widest font-semibold">Approved Therapies</div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .subpage { display: none; }
+  .subpage.active { display: block; }
+  .sec-tab { transition: background 0.15s, color 0.15s; color: rgba(186,230,253,0.65); }
+  .sec-tab:hover:not(.active) { color: white; background: rgba(255,255,255,0.1); }
+  .sec-tab.active { background: white; color: #0a2342; font-weight: 700; }
+  .pg-pill { color: #6b7280; transition: all 0.15s; }
+  .pg-pill.active { background: white; color: #0a2342; font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.06); }
+</style>
+
+<script is:inline>
+function showSection(id) {
+  ['patients','researchers','pharma'].forEach(function(s) {
+    document.getElementById('section-'+s).classList.remove('active');
+    document.getElementById('tab-'+s).classList.remove('active');
+  });
+  document.getElementById('section-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+function showPage(id) {
+  ['p1','p2','p3','p4','p5'].forEach(function(p) {
+    document.getElementById('page-'+p).classList.remove('active');
+    document.getElementById('ptab-'+p).classList.remove('active');
+    var num = document.getElementById('pnum-'+p);
+    num.className = 'w-4 h-4 rounded-full bg-slate-300 text-slate-500 text-[0.55rem] font-bold flex items-center justify-center flex-shrink-0';
+  });
+  document.getElementById('page-'+id).classList.add('active');
+  document.getElementById('ptab-'+id).classList.add('active');
+  var an = document.getElementById('pnum-'+id);
+  an.className = 'w-4 h-4 rounded-full bg-[#0a2342] text-white text-[0.55rem] font-bold flex items-center justify-center flex-shrink-0';
+  var top = document.getElementById('section-patients');
+  if (top) window.scrollTo({ top: top.offsetTop - 80, behavior: 'smooth' });
+}
+</script>

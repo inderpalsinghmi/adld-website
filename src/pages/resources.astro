@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { fetchPageSections } from '../lib/notion.js';
+
+const s = await fetchPageSections('resources');
+---
+<Layout
+  title="Resources — ADLD Center"
+  description="Curated information and tools for ADLD patients, clinicians, and researchers."
+  active="resources"
+>
+
+  <!-- ── Banner ── -->
+  <section class="relative h-64 md:h-72 overflow-hidden bg-[#060f1e]">
+    <img src="/about-banner.png" alt="ADLD Resources" class="absolute inset-0 w-full h-full object-cover object-center opacity-45">
+    <div class="absolute inset-0 bg-gradient-to-t from-[#060f1e] via-[#060f1e]/30 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#060f1e]/80 via-transparent to-transparent"></div>
+    <div class="absolute inset-0 flex flex-col justify-end px-8 md:px-14 pb-10">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">Resources</h1>
+      <p class="text-sky-300 text-sm mt-2 max-w-md">Curated information and tools for patients, clinicians, and researchers.</p>
+    </div>
+  </section>
+
+  <!-- ── Handbook Hero ── -->
+  <section class="bg-white py-14 px-6 border-b border-slate-100">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
+      <div class="flex-shrink-0 w-52 md:w-60">
+        <img src="/handbook-cover.png" alt="ADLD Handbook" class="w-full drop-shadow-xl rounded-lg">
+      </div>
+      <div class="flex-1 text-center md:text-left">
+        <p class="text-sky-600 text-[0.72rem] font-bold uppercase tracking-widest mb-3">Free Download</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-[#0a2342] tracking-tight leading-tight mb-4">The ADLD Handbook</h2>
+        <p class="text-slate-500 leading-relaxed mb-7 max-w-lg">Your complete guide to understanding, managing, and finding support for Autosomal Dominant Leukodystrophy — written for patients, caregivers, and families navigating a new diagnosis.</p>
+        <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+          <a
+            href="/ADLD-Handbook-v1.pdf"
+            target="_blank"
+            class="inline-flex items-center gap-2.5 bg-[#0a2342] text-white px-7 py-3.5 rounded-xl font-bold text-sm hover:bg-[#0d2a55] transition-colors shadow-md"
+          >
+            <svg class="w-4 h-4 fill-current flex-shrink-0" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            Download Free PDF
+          </a>
+          <a href="contact.html" class="inline-flex items-center gap-2 border border-slate-200 text-slate-600 px-6 py-3.5 rounded-xl font-semibold text-sm hover:border-slate-300 hover:text-[#0a2342] transition-colors">
+            Request Printed Copy
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Content ── -->
+  <div class="bg-slate-50 py-12 px-6">
+    <div class="max-w-4xl mx-auto space-y-7">
+
+      <!-- Resource cards — Notion managed -->
+      <Fragment set:html={s['resources-body'] ?? `
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-7">
+          <h2 class="text-xl font-bold text-[#0a2342] mb-5 pb-3 border-b border-slate-100">For Patients &amp; Caregivers</h2>
+          <div class="space-y-3">
+            <a href="https://ulf.org/" target="_blank" rel="noreferrer" class="flex items-center justify-between p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-sky-200 hover:bg-sky-50 transition-colors group">
+              <div>
+                <p class="font-semibold text-[#0a2342] text-[0.9rem]">United Leukodystrophy Foundation (ULF)</p>
+                <p class="text-slate-500 text-xs mt-0.5">Support groups, patient resources, and community</p>
+              </div>
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-sky-500 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://findageneticcounselor.nsgc.org/" target="_blank" rel="noreferrer" class="flex items-center justify-between p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-sky-200 hover:bg-sky-50 transition-colors group">
+              <div>
+                <p class="font-semibold text-[#0a2342] text-[0.9rem]">Find a Genetic Counselor (NSGC)</p>
+                <p class="text-slate-500 text-xs mt-0.5">National Society of Genetic Counselors directory</p>
+              </div>
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-sky-500 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-7">
+          <h2 class="text-xl font-bold text-[#0a2342] mb-5 pb-3 border-b border-slate-100">For Clinicians &amp; Researchers</h2>
+          <div class="space-y-3">
+            <!-- Featured: Clinical Practice Guidelines -->
+            <a href="https://pubmed.ncbi.nlm.nih.gov/40933505/" target="_blank" rel="noreferrer" class="flex items-start justify-between p-5 rounded-xl bg-sky-50 border-2 border-sky-200 hover:border-sky-400 hover:bg-sky-100 transition-colors group">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="inline-flex items-center gap-1 bg-sky-600 text-white text-[0.65rem] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
+                    <svg class="w-2.5 h-2.5 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    New 2025
+                  </span>
+                  <span class="text-sky-600 text-[0.7rem] font-semibold">Landmark Publication</span>
+                </div>
+                <p class="font-bold text-[#0a2342]">2025 Clinical Practice Guidelines</p>
+                <p class="text-slate-600 text-sm mt-1">Dhamija et al. — <em>Neurology Genetics.</em> The first-ever clinical practice guidelines for diagnosis, management, and surveillance of LMNB1-Related ADLD.</p>
+              </div>
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-sky-500 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/?term=autosomal+dominant+leukodystrophy" target="_blank" rel="noreferrer" class="flex items-center justify-between p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-sky-200 hover:bg-sky-50 transition-colors group">
+              <div>
+                <p class="font-semibold text-[#0a2342] text-[0.9rem]">PubMed — ADLD Literature</p>
+                <p class="text-slate-500 text-xs mt-0.5">Full publication library for autosomal dominant leukodystrophy research</p>
+              </div>
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-sky-500 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/rare-diseases-natural-history-studies-drug-development" target="_blank" rel="noreferrer" class="flex items-center justify-between p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-sky-200 hover:bg-sky-50 transition-colors group">
+              <div>
+                <p class="font-semibold text-[#0a2342] text-[0.9rem]">FDA Guidance: Natural History Studies</p>
+                <p class="text-slate-500 text-xs mt-0.5">Rare Diseases — Natural History Studies for Drug Development</p>
+              </div>
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-sky-500 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+      `} />
+
+      <!-- Contact CTA -->
+      <div class="bg-[#0a2342] text-white rounded-2xl p-7 text-center">
+        <p class="text-sky-400 text-[0.68rem] font-bold uppercase tracking-widest mb-3">Missing Something?</p>
+        <p class="font-bold text-base mb-4">Know of a resource that should be listed here?</p>
+        <a href="contact.html" class="inline-flex items-center gap-2 bg-white text-[#0a2342] px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-sky-50 transition-colors">Contact the ADLD Center</a>
+      </div>
+
+    </div>
+  </div>
+
+</Layout>

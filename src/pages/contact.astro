@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="Contact Us — ADLD Center"
+  description="Reach out to the ADLD Center with questions about the disease, research, enrollment, or donations."
+  active="contact"
+>
+
+  <!-- ── Banner ── -->
+  <section class="relative bg-gradient-to-br from-[#060f1e] via-[#0a2342] to-[#0d3060] py-20 px-8 md:px-14 overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 20% 50%, #0ea5e9 0%, transparent 50%), radial-gradient(circle at 80% 20%, #3b82f6 0%, transparent 40%);"></div>
+    <div class="relative max-w-3xl">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-3">Get in Touch</h1>
+      <p class="text-sky-300 text-base leading-relaxed max-w-lg">We are here to help — whether you are a patient, caregiver, clinician, researcher, or partner. We typically respond within one to two business days.</p>
+    </div>
+  </section>
+
+  <!-- ── Content ── -->
+  <div class="bg-slate-50 py-12 px-6">
+    <div class="max-w-4xl mx-auto space-y-7">
+
+      <!-- Contact cards -->
+      <div class="grid sm:grid-cols-2 gap-5">
+        <a href="mailto:info@adld.center" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-7 flex items-center gap-5 hover:border-sky-300 hover:shadow-md transition-all group">
+          <div class="w-14 h-14 rounded-xl bg-[#0a2342] text-white flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <div>
+            <p class="text-[0.68rem] font-bold uppercase tracking-widest text-sky-500 group-hover:text-sky-600 transition-colors mb-0.5">Email</p>
+            <p class="font-bold text-[#0a2342] text-base">info@adld.center</p>
+            <p class="text-slate-500 text-xs mt-1">We respond within 1–2 business days.</p>
+          </div>
+        </a>
+        <a href="tel:5072932427" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-7 flex items-center gap-5 hover:border-sky-300 hover:shadow-md transition-all group">
+          <div class="w-14 h-14 rounded-xl bg-[#0a2342] text-white flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          </div>
+          <div>
+            <p class="text-[0.68rem] font-bold uppercase tracking-widest text-sky-500 group-hover:text-sky-600 transition-colors mb-0.5">Phone</p>
+            <p class="font-bold text-[#0a2342] text-base">507-293-2427</p>
+            <p class="text-slate-500 text-xs mt-1">Monday–Friday, 9am–5pm CT.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- How Can We Help -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-7">
+        <h2 class="text-xl font-bold text-[#0a2342] mb-5 pb-3 border-b border-slate-100">How Can We Help?</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+            <p class="font-semibold text-[#0a2342] text-[0.9rem] mb-1">Patients &amp; Caregivers</p>
+            <p class="text-slate-500 text-[0.85rem] leading-relaxed">Questions about symptoms, diagnosis, finding a specialist, or enrolling in the Natural History Study.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+            <p class="font-semibold text-[#0a2342] text-[0.9rem] mb-1">Clinicians &amp; Researchers</p>
+            <p class="text-slate-500 text-[0.85rem] leading-relaxed">Collaboration inquiries, access to our patient registry, and information about ongoing trials.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+            <p class="font-semibold text-[#0a2342] text-[0.9rem] mb-1">Pharma &amp; Biotech</p>
+            <p class="text-slate-500 text-[0.85rem] leading-relaxed">Licensing, partnership, data access, and clinical trial collaboration opportunities.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+            <p class="font-semibold text-[#0a2342] text-[0.9rem] mb-1">Donations &amp; Giving</p>
+            <p class="text-slate-500 text-[0.85rem] leading-relaxed">Questions about tax receipts, stock donations, matching gifts, or planned giving.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Donate CTA -->
+      <div class="bg-gradient-to-br from-red-700 to-red-600 text-white rounded-2xl p-7 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <p class="font-bold text-base mb-1">Ready to support ADLD research?</p>
+          <p class="text-red-100 text-sm leading-relaxed">Every contribution accelerates our path to a cure.</p>
+        </div>
+        <a href="donate.html" class="flex-shrink-0 bg-white text-red-700 px-7 py-3 rounded-xl font-bold text-sm hover:bg-red-50 transition-colors text-center">Donate Now</a>
+      </div>
+
+    </div>
+  </div>
+
+</Layout>

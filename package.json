@@ -1,0 +1,15 @@
+{
+  "name": "adld-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev":     "astro dev",
+    "build":   "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@notionhq/client": "^5.14.0",
+    "astro": "^4.16.0"
+  }
+}

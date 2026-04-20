@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { fetchPageSections } from '../lib/notion.js';
+
+const s = await fetchPageSections('about');
+---
+<Layout
+  title="About Us — ADLD Center"
+  description="Learn about the ADLD Center's mission to accelerate research and support patients living with Autosomal Dominant Leukodystrophy."
+  active="about"
+>
+
+  <!-- ── Banner ── -->
+  <section class="relative h-64 md:h-80 overflow-hidden bg-[#060f1e]">
+    <img src="/about-banner.png" alt="About the ADLD Center" class="absolute inset-0 w-full h-full object-cover object-center opacity-50">
+    <div class="absolute inset-0 bg-gradient-to-t from-[#060f1e] via-[#060f1e]/30 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#060f1e]/80 via-transparent to-transparent"></div>
+    <div class="absolute inset-0 flex flex-col justify-end px-8 md:px-14 pb-10">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">About Us</h1>
+      <p class="text-sky-300 text-sm mt-2 max-w-lg">Our story, our mission, and why we exist.</p>
+    </div>
+  </section>
+
+  <!-- ── Content ── -->
+  <div class="bg-slate-50 py-12 px-6">
+    <div class="max-w-4xl mx-auto space-y-7">
+
+      <!-- Mission statement -->
+      <div class="bg-gradient-to-br from-[#0a2342] to-[#0d3060] text-white rounded-2xl p-8 shadow-md">
+        <p class="text-sky-400 text-[0.68rem] font-bold uppercase tracking-widest mb-3">Our Mission</p>
+        <p class="text-xl md:text-2xl font-bold leading-[1.4] max-w-2xl">
+          To accelerate the development of treatments and a cure for Autosomal Dominant Leukodystrophy by connecting patients, researchers, and industry — and funding the science that moves the needle.
+        </p>
+      </div>
+
+      <!-- What we do — Notion managed -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-7">
+        <h2 class="text-xl font-bold text-[#0a2342] mb-5 pb-3 border-b border-slate-100">What We Do</h2>
+        <Fragment set:html={s['about-body'] ?? `
+          <div class="space-y-5 text-[0.92rem] text-slate-600 leading-[1.75]">
+            <p>The ADLD Center is a nonprofit organization dedicated to one goal: ending Autosomal Dominant Leukodystrophy. We operate at the intersection of patient advocacy, clinical research, and industry partnership — accelerating every part of the pipeline that leads to a cure.</p>
+            <div class="grid sm:grid-cols-2 gap-4 pt-2">
+              <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                <span class="text-xl flex-shrink-0">🧬</span>
+                <div>
+                  <p class="font-semibold text-[#0a2342] text-[0.9rem] mb-1">Funding Research</p>
+                  <p class="text-slate-500 text-[0.85rem] leading-relaxed">Grants at Mayo Clinic, Henry Ford Health, and the Orphan Disease Center at UPenn — up to $50,000 per grant per year.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                <span class="text-xl flex-shrink-0">🔬</span>
+                <div>
+                  <p class="font-semibold text-[#0a2342] text-[0.9rem] mb-1">Running Clinical Trials</p>
+                  <p class="text-slate-500 text-[0.85rem] leading-relaxed">We initiated the first-in-human ADLD n=1 clinical trial and are paving the way for multi-patient trials by 2026.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                <span class="text-xl flex-shrink-0">🌍</span>
+                <div>
+                  <p class="font-semibold text-[#0a2342] text-[0.9rem] mb-1">Natural History Study</p>
+                  <p class="text-slate-500 text-[0.85rem] leading-relaxed">A global, remote study tracking ADLD progression to power synthetic control arms in future FDA trials.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                <span class="text-xl flex-shrink-0">👥</span>
+                <div>
+                  <p class="font-semibold text-[#0a2342] text-[0.9rem] mb-1">Patient Support</p>
+                  <p class="text-slate-500 text-[0.85rem] leading-relaxed">Education, community meetups, and resources that help patients and families navigate their ADLD journey.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `} />
+      </div>
+
+      <!-- CTA row -->
+      <div class="grid sm:grid-cols-2 gap-5">
+        <a href="research-roadmap.html" class="bg-[#0a2342] text-white rounded-2xl p-6 hover:bg-[#0d2e5a] transition-colors">
+          <p class="text-sky-400 text-[0.68rem] font-bold uppercase tracking-widest mb-2">Where We're Headed</p>
+          <p class="font-bold text-base mb-1">Research Roadmap</p>
+          <p class="text-blue-200 text-sm leading-relaxed">Our strategic priorities through 2027 — clinical trials, novel drug development, and disease tracking.</p>
+          <p class="text-sky-400 text-sm font-semibold mt-4 flex items-center gap-1">View roadmap <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></p>
+        </a>
+        <a href="donate.html" class="bg-gradient-to-br from-red-700 to-red-600 text-white rounded-2xl p-6 hover:from-red-800 hover:to-red-700 transition-colors">
+          <p class="text-red-200 text-[0.68rem] font-bold uppercase tracking-widest mb-2">Support Our Work</p>
+          <p class="font-bold text-base mb-1">Make a Donation</p>
+          <p class="text-red-100 text-sm leading-relaxed">Every dollar directly advances our path to clinical trials and a cure.</p>
+          <p class="text-white text-sm font-semibold mt-4 flex items-center gap-1">Donate now <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></p>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</Layout>

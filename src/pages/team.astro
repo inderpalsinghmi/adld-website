@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { fetchPageSections } from '../lib/notion.js';
+
+const s = await fetchPageSections('team');
+---
+<Layout
+  title="Our Team — ADLD Center"
+  description="Meet the leadership, researchers, and institutional partners driving ADLD research forward."
+  active="team"
+>
+
+  <!-- ── Banner ── -->
+  <section class="relative h-64 md:h-80 overflow-hidden bg-[#060f1e]">
+    <img src="/team-page.png" alt="The ADLD Center Team" class="absolute inset-0 w-full h-full object-cover object-center opacity-50">
+    <div class="absolute inset-0 bg-gradient-to-t from-[#060f1e] via-[#060f1e]/30 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#060f1e]/80 via-transparent to-transparent"></div>
+    <div class="absolute inset-0 flex flex-col justify-end px-8 md:px-14 pb-10">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">Our Team</h1>
+      <p class="text-sky-300 text-sm mt-2 max-w-lg">The people and institutions driving ADLD research forward.</p>
+    </div>
+  </section>
+
+  <!-- ── Content ── -->
+  <div class="bg-slate-50 py-12 px-6">
+    <div class="max-w-4xl mx-auto space-y-7">
+
+      <!-- Leadership — Notion managed -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-7">
+        <h2 class="text-xl font-bold text-[#0a2342] mb-5 pb-3 border-b border-slate-100">Leadership</h2>
+        <Fragment set:html={s['team-leadership'] ?? `
+          <p class="text-slate-500 text-sm leading-relaxed">Leadership profiles are managed in Notion under the <strong>team-leadership</strong> section.</p>
+        `} />
+      </div>
+
+      <!-- Research Partners — Notion managed with static fallback -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-7">
+        <h2 class="text-xl font-bold text-[#0a2342] mb-5 pb-3 border-b border-slate-100">Research Partners &amp; Advisors</h2>
+        <Fragment set:html={s['team-partners'] ?? `
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div class="bg-slate-50 rounded-xl p-5 border border-slate-100 text-center">
+              <div class="w-12 h-12 rounded-full bg-[#0a2342] text-white flex items-center justify-center font-bold text-sm mx-auto mb-3">MC</div>
+              <p class="font-bold text-[#0a2342] text-[0.88rem]">Mayo Clinic</p>
+              <p class="text-slate-400 text-xs mt-1">Rochester, MN</p>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-5 border border-slate-100 text-center">
+              <div class="w-12 h-12 rounded-full bg-[#0a2342] text-white flex items-center justify-center font-bold text-sm mx-auto mb-3">UP</div>
+              <p class="font-bold text-[#0a2342] text-[0.88rem]">University of Pittsburgh</p>
+              <p class="text-slate-400 text-xs mt-1">Dr. Quasar Padiath Lab</p>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-5 border border-slate-100 text-center">
+              <div class="w-12 h-12 rounded-full bg-[#0a2342] text-white flex items-center justify-center font-bold text-sm mx-auto mb-3">HF</div>
+              <p class="font-bold text-[#0a2342] text-[0.88rem]">Henry Ford Health</p>
+              <p class="text-slate-400 text-xs mt-1">Biomarker Discovery</p>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-5 border border-slate-100 text-center">
+              <div class="w-12 h-12 rounded-full bg-[#0a2342] text-white flex items-center justify-center font-bold text-sm mx-auto mb-3">OD</div>
+              <p class="font-bold text-[#0a2342] text-[0.88rem]">Orphan Disease Center</p>
+              <p class="text-slate-400 text-xs mt-1">University of Pennsylvania</p>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-5 border border-slate-100 text-center">
+              <div class="w-12 h-12 rounded-full bg-[#0a2342] text-white flex items-center justify-center font-bold text-sm mx-auto mb-3">ULF</div>
+              <p class="font-bold text-[#0a2342] text-[0.88rem]">United Leukodystrophy Foundation</p>
+              <p class="text-slate-400 text-xs mt-1">Patient Advocacy Partner</p>
+            </div>
+          </div>
+        `} />
+      </div>
+
+      <!-- Join CTA -->
+      <div class="bg-gradient-to-br from-[#0a2342] to-[#0d3060] text-white rounded-2xl p-7 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+        <div>
+          <p class="text-sky-400 text-[0.68rem] font-bold uppercase tracking-widest mb-2">Join the Fight</p>
+          <p class="font-bold text-base mb-1">Interested in collaborating?</p>
+          <p class="text-blue-200 text-sm leading-relaxed max-w-md">We welcome researchers, clinicians, and industry partners who want to accelerate progress on ADLD. Reach out to start a conversation.</p>
+        </div>
+        <a href="contact.html" class="flex-shrink-0 bg-white text-[#0a2342] px-6 py-3 rounded-xl text-sm font-bold hover:bg-sky-50 transition-colors text-center">Get in Touch</a>
+      </div>
+
+    </div>
+  </div>
+
+</Layout>
