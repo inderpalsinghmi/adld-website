@@ -1,0 +1,11 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="180" height="180" rx="38" fill="#0a2342"/>
+  <!-- Large center-top dot: sky blue -->
+  <circle cx="90" cy="62" r="32" fill="#0ea5e9"/>
+  <!-- Bottom-left dot: lighter blue -->
+  <circle cx="54" cy="124" r="24" fill="#38bdf8"/>
+  <!-- Bottom-right dot: white/near-white -->
+  <circle cx="126" cy="124" r="24" fill="#e0f2fe"/>
+  <!-- Small accent dot center-bottom between the two lower dots -->
+  <circle cx="90" cy="138" r="9" fill="#0a2342"/>
+</svg>
