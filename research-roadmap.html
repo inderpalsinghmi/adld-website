@@ -27,40 +27,78 @@ Contact
 </a> <div class="pt-2 pb-1" data-astro-cid-sckkx6r4> <a href="donate.html" class="flex items-center justify-center gap-2 bg-red-600 text-white px-5 py-3 rounded-xl text-sm font-bold hover:bg-red-700 transition-colors" data-astro-cid-sckkx6r4> <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" data-astro-cid-sckkx6r4><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" data-astro-cid-sckkx6r4></path></svg>
 Donate to ADLD Research
 </a> </div> </div> </div> </nav> <!-- ── Page content ── -->   <section class="relative h-64 md:h-80 overflow-hidden bg-[#060f1e]"> <img src="/research-roadmap.png" alt="ADLD Research Roadmap" class="absolute inset-0 w-full h-full object-cover object-center opacity-50"> <div class="absolute inset-0 bg-gradient-to-t from-[#060f1e] via-[#060f1e]/30 to-transparent"></div> <div class="absolute inset-0 bg-gradient-to-r from-[#060f1e]/80 via-transparent to-transparent"></div> <div class="absolute inset-0 flex flex-col justify-end px-8 md:px-14 pb-10"> <p class="text-sky-400 text-[0.68rem] font-bold uppercase tracking-widest mb-2">Updated April 2026</p> <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">Research Roadmap</h1> <p class="text-sky-300 text-sm mt-2 max-w-lg">Our strategic priorities through 2027: clinical trials, novel drug development, and disease tracking running in parallel.</p> </div> </section>  <div class="bg-white border-b border-slate-100 py-12 px-6"> <div class="max-w-5xl mx-auto"> <p class="text-slate-600 leading-relaxed max-w-3xl">The ADLD Center runs six parallel programs aimed at the same goal: a treatment, and eventually a cure, for Autosomal Dominant Leukodystrophy. Clinical trials, novel drug development, a dedicated mouse model, and the Natural History Study all feed into one another, so progress on any one track accelerates the others.</p>
-        <!-- Timeline schematic -->
+        <!-- Timeline schematic (Gantt-style quarterly) -->
         <div class="mt-10 bg-slate-50 border border-slate-200 rounded-2xl p-5 md:p-6">
           <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
             <p class="text-sky-600 text-[0.72rem] font-bold uppercase tracking-widest">Timeline at a Glance</p>
             <div class="flex items-center gap-4 text-[0.7rem] text-slate-500">
-              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>Active</span>
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>Completed / Active</span>
               <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span>In Progress</span>
-              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>Exploratory</span>
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>Planned</span>
             </div>
           </div>
           <div class="overflow-x-auto -mx-5 px-5 md:mx-0 md:px-0">
-            <div class="min-w-[560px]">
-              <div class="grid grid-cols-[150px_repeat(3,1fr)] gap-x-3 pb-2 mb-3 border-b border-slate-200">
+            <div class="min-w-[900px]">
+              <!-- Year header -->
+              <div class="grid grid-cols-[160px_repeat(12,1fr)] gap-x-1 pb-1 text-[0.7rem] font-bold uppercase tracking-widest text-slate-500">
                 <div></div>
-                <div class="text-center text-[0.65rem] font-bold uppercase tracking-widest text-slate-500">2025</div>
-                <div class="text-center text-[0.65rem] font-bold uppercase tracking-widest text-slate-500">2026</div>
-                <div class="text-center text-[0.65rem] font-bold uppercase tracking-widest text-slate-500">2027</div>
+                <div class="col-start-2 col-span-4 text-center border-b-2 border-slate-300 pb-1">2025</div>
+                <div class="col-start-6 col-span-4 text-center border-b-2 border-slate-300 pb-1">2026</div>
+                <div class="col-start-10 col-span-4 text-center border-b-2 border-slate-300 pb-1">2027</div>
               </div>
-              <div class="grid grid-cols-[150px_repeat(3,1fr)] gap-x-3 gap-y-2 items-center">
-                <div class="text-[0.72rem] font-semibold text-[#0a2342]">T1 ASO Trial</div>
-                <div class="col-span-3 h-7 rounded-full bg-emerald-100 flex items-center justify-center text-[0.65rem] font-semibold text-emerald-800 px-3 truncate">n=1 &middot; Recruitment &middot; Expanded Trial</div>
-                <div class="text-[0.72rem] font-semibold text-[#0a2342]">T2 NHS &amp; Biomarkers</div>
-                <div class="col-span-3 h-7 rounded-full bg-emerald-100 flex items-center justify-center text-[0.65rem] font-semibold text-emerald-800 px-3 truncate">Enrolling &middot; Biosamples &middot; Endpoint validation</div>
-                <div class="text-[0.72rem] font-semibold text-[#0a2342]">T3 shRNA / AAV</div>
+              <!-- Quarter subheader -->
+              <div class="grid grid-cols-[160px_repeat(12,1fr)] gap-x-1 pb-3 mb-3 text-[0.6rem] text-slate-400 border-b border-slate-200">
                 <div></div>
-                <div class="col-span-2 h-7 rounded-full bg-sky-100 flex items-center justify-center text-[0.65rem] font-semibold text-sky-800 px-3 truncate">In vitro &rarr; In vivo</div>
-                <div class="text-[0.72rem] font-semibold text-[#0a2342]">T4 Drug Repurposing</div>
-                <div class="col-span-3 h-7 rounded-full bg-sky-100 flex items-center justify-center text-[0.65rem] font-semibold text-sky-800 px-3 truncate">Rarebase &amp; FTI screens &middot; Mouse validation</div>
-                <div class="text-[0.72rem] font-semibold text-[#0a2342]">T5 Biotech Partnerships</div>
-                <div></div>
-                <div class="col-span-2 h-7 rounded-full bg-slate-200 flex items-center justify-center text-[0.65rem] font-semibold text-slate-700 px-3 truncate">Diligence &rarr; Pilot studies</div>
-                <div class="text-[0.72rem] font-semibold text-[#0a2342]">T6 Mouse Model (JAX)</div>
-                <div></div>
-                <div class="col-span-2 h-7 rounded-full bg-sky-100 flex items-center justify-center text-[0.65rem] font-semibold text-sky-800 px-3 truncate">Q2 kickoff &middot; Q1 2027 results</div>
+                <div class="text-center">Q1</div><div class="text-center">Q2</div><div class="text-center">Q3</div><div class="text-center">Q4</div>
+                <div class="text-center">Q1</div><div class="text-center">Q2</div><div class="text-center">Q3</div><div class="text-center">Q4</div>
+                <div class="text-center">Q1</div><div class="text-center">Q2</div><div class="text-center">Q3</div><div class="text-center">Q4</div>
+              </div>
+              <!-- Rows -->
+              <div class="space-y-2">
+                <!-- T1 ASO Trial -->
+                <div class="grid grid-cols-[160px_repeat(12,1fr)] gap-x-1 items-center">
+                  <div class="text-[0.72rem] font-semibold text-[#0a2342]">T1 ASO Trial</div>
+                  <div class="col-start-2 col-span-6 h-7 bg-emerald-100 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-emerald-800 px-2 truncate">n=1 Dosing &amp; Safety</div>
+                  <div class="col-start-8 col-span-3 h-7 bg-sky-100 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-sky-800 px-2 truncate">Recruitment</div>
+                  <div class="col-start-11 col-span-3 h-7 bg-slate-200 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-slate-700 px-2 truncate">Phase I/II</div>
+                </div>
+                <!-- T2 NHS & Biomarkers -->
+                <div class="grid grid-cols-[160px_repeat(12,1fr)] gap-x-1 items-center">
+                  <div class="text-[0.72rem] font-semibold text-[#0a2342]">T2 NHS &amp; Biomarkers</div>
+                  <div class="col-start-2 col-span-1 h-7 bg-emerald-200 rounded-full flex items-center justify-center text-[0.55rem] font-semibold text-emerald-900 px-1 truncate">Enroll</div>
+                  <div class="col-start-3 col-span-3 h-7 bg-emerald-100 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-emerald-800 px-2 truncate">Data Abstraction</div>
+                  <div class="col-start-6 col-span-4 h-7 bg-sky-100 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-sky-800 px-2 truncate">Analysis</div>
+                  <div class="col-start-10 col-span-4 h-7 bg-slate-200 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-slate-700 px-2 truncate">Prospective Study</div>
+                </div>
+                <!-- T3 shRNA / AAV -->
+                <div class="grid grid-cols-[160px_repeat(12,1fr)] gap-x-1 items-center">
+                  <div class="text-[0.72rem] font-semibold text-[#0a2342]">T3 shRNA / AAV</div>
+                  <div class="col-start-4 col-span-2 h-7 bg-emerald-100 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-emerald-800 px-2 truncate">Lead Selection</div>
+                  <div class="col-start-6 col-span-3 h-7 bg-sky-100 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-sky-800 px-2 truncate">In Vitro Testing</div>
+                  <div class="col-start-9 col-span-4 h-7 bg-slate-200 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-slate-700 px-2 truncate">In Vivo Testing</div>
+                </div>
+                <!-- T4 Drug Repurposing -->
+                <div class="grid grid-cols-[160px_repeat(12,1fr)] gap-x-1 items-center">
+                  <div class="text-[0.72rem] font-semibold text-[#0a2342]">T4 Drug Repurposing</div>
+                  <div class="col-start-2 col-span-3 h-7 bg-emerald-100 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-emerald-800 px-2 truncate">Rarebase Screen</div>
+                  <div class="col-start-5 col-span-5 h-7 bg-sky-100 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-sky-800 px-2 truncate">FTI + Academic Screens</div>
+                  <div class="col-start-10 col-span-3 h-7 bg-slate-200 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-slate-700 px-2 truncate">Mouse Validation</div>
+                </div>
+                <!-- T5 Biotech Partnerships -->
+                <div class="grid grid-cols-[160px_repeat(12,1fr)] gap-x-1 items-center">
+                  <div class="text-[0.72rem] font-semibold text-[#0a2342]">T5 Biotech Partnerships</div>
+                  <div class="col-start-4 col-span-2 h-7 bg-emerald-100 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-emerald-800 px-2 truncate">Partner ID</div>
+                  <div class="col-start-6 col-span-4 h-7 bg-sky-100 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-sky-800 px-2 truncate">Diligence</div>
+                  <div class="col-start-10 col-span-4 h-7 bg-slate-200 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-slate-700 px-2 truncate">Pilot Studies</div>
+                </div>
+                <!-- T6 Mouse Model (JAX) -->
+                <div class="grid grid-cols-[160px_repeat(12,1fr)] gap-x-1 items-center">
+                  <div class="text-[0.72rem] font-semibold text-[#0a2342]">T6 Mouse Model (JAX)</div>
+                  <div class="col-start-4 col-span-2 h-7 bg-emerald-100 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-emerald-800 px-2 truncate">Design</div>
+                  <div class="col-start-6 col-span-2 h-7 bg-sky-100 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-sky-800 px-2 truncate">Q2 Kickoff</div>
+                  <div class="col-start-8 col-span-2 h-7 bg-sky-100 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-sky-800 px-2 truncate">Efficacy Testing</div>
+                  <div class="col-start-10 col-span-2 h-7 bg-slate-200 rounded-full flex items-center justify-center text-[0.6rem] font-semibold text-slate-700 px-2 truncate">Q1 Results</div>
+                </div>
               </div>
             </div>
           </div>
