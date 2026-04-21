@@ -28,13 +28,25 @@ Contact
 Donate to ADLD Research
 </a> </div> </div> </div> </nav> <!-- ── Page content ── -->   <section class="relative h-64 md:h-72 overflow-hidden bg-[#060f1e]"> <img src="/about-banner.png" alt="ADLD Resources" class="absolute inset-0 w-full h-full object-cover object-center opacity-45"> <div class="absolute inset-0 bg-gradient-to-t from-[#060f1e] via-[#060f1e]/30 to-transparent"></div> <div class="absolute inset-0 bg-gradient-to-r from-[#060f1e]/80 via-transparent to-transparent"></div> <div class="absolute inset-0 flex flex-col justify-end px-8 md:px-14 pb-10"> <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">Resources</h1> <p class="text-sky-300 text-sm mt-2 max-w-md">Curated information and tools for patients, clinicians, and researchers.</p> </div> </section>  <div class="bg-slate-50 py-12 px-6"> <div class="max-w-4xl mx-auto space-y-7">
         <!-- Handbook download card -->
-        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-7">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
           <div class="flex flex-col sm:flex-row items-center gap-6 sm:gap-10">
-            <div class="flex-shrink-0 w-36 sm:w-44">
-              <img src="/handbook-cover.png" alt="ADLD Handbook" class="w-full drop-shadow-xl rounded-lg">
+            <!-- CSS book cover -->
+            <div class="relative w-36 sm:w-40 aspect-[3/4] flex-shrink-0">
+              <div class="absolute inset-0 translate-x-1.5 translate-y-2 bg-[#0a2342]/20 blur-md rounded-r-md"></div>
+              <div class="relative h-full bg-gradient-to-br from-[#0a2342] via-[#0d2a55] to-[#0a2342] rounded-r-md rounded-l-sm overflow-hidden">
+                <div class="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-r from-black/40 to-transparent"></div>
+                <div class="absolute top-[38%] right-4 left-6 h-px bg-sky-400/40"></div>
+                <div class="relative h-full flex flex-col p-4 md:p-5 pl-6 md:pl-7">
+                  <div class="text-sky-400 text-[0.55rem] md:text-[0.6rem] font-bold uppercase tracking-widest mb-2">ADLD Center</div>
+                  <h3 class="text-white text-base md:text-lg font-extrabold leading-tight">The ADLD Handbook</h3>
+                  <div class="flex-1"></div>
+                  <div class="text-sky-200 text-[0.6rem] md:text-[0.65rem] font-semibold mb-1.5">For Patients &amp; Families</div>
+                  <div class="pt-1.5 border-t border-sky-400/30 text-sky-300/70 text-[0.5rem] md:text-[0.55rem] font-semibold tracking-wider">VOLUME I</div>
+                </div>
+              </div>
             </div>
             <div class="flex-1 text-center sm:text-left">
-              <p class="text-sky-600 text-[0.72rem] font-bold uppercase tracking-widest mb-2">Free Download</p>
+              <p class="text-sky-600 text-[0.72rem] font-bold uppercase tracking-widest mb-2">Free Resource</p>
               <h2 class="text-2xl font-extrabold text-[#0a2342] tracking-tight leading-tight mb-3">The ADLD Handbook</h2>
               <p class="text-slate-500 text-sm leading-relaxed mb-5 max-w-lg">Your complete guide to understanding, managing, and finding support for Autosomal Dominant Leukodystrophy, written for patients, caregivers, and families navigating a new diagnosis.</p>
               <a href="/ADLD-Handbook-v1.pdf" target="_blank" class="inline-flex items-center gap-2 bg-[#0a2342] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-[#0d2a55] transition-colors shadow-sm">
